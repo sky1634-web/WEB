@@ -1,0 +1,142 @@
+body, h1,h2, h3, h4, p, a {
+    margin: 0;
+    font-size: 100%; font-weight: normal;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  *{
+    box-sizing: border-box;
+  }
+  .header {
+    height: 100vh;
+    background-color: #eee;
+    background-image: url(RussiaWithTowns.jpg);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+  }
+  
+  .header-title{
+    font-size: 100px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: auto;
+    
+  }
+  
+  .overlay {
+    display:flex;
+    width: 100%;
+    height: 100%;
+    
+  }
+  .content{
+    font-size:0;
+    width: 790px;
+      margin: 0 auto;
+    margin-top:100px;
+    margin-bottom:50px;
+  }
+  .card{
+    width:350px;
+    margin-bottom: 60px;
+    box-shadow: 4px 4px 5px rgba(250,50,50,.4);
+    padding : 45px 45px 70px 45px;
+      display: inline-block;
+    margin-right: 90px
+   
+    
+  }
+  .card-title{
+   font-size:24px;
+    font-weight:500;
+    margin-bottom:10px;
+  }
+  .card-text{
+    font-size:16px;
+  }
+  .card-image{
+   width: 100%;
+    margin-bottom:25px;
+  }
+  .no-right-margin {
+      margin-right: 0;
+  }
+  .footer{
+      height:300px;
+    background-color:black;
+    display: flex;
+   
+    }
+  .footer-author
+  {
+    font-size:24px;
+    color:white;
+    margin:auto;
+  }
+  #menu {
+    background: #0db5b5;
+    width: 40%;
+    padding:1;
+    text-align: center;
+    float:left;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+  }
+  #menu a {
+    color: #3f3f3f;
+    text-decoration: none;
+    
+  }
+  #menu a:hover {
+    color: #6b6b6b;
+    
+  }
+  #menu ul {
+    padding:0;
+    margin:0;
+    
+    
+  }
+  #menu li {
+    list-style: none;
+    padding: 0 15px 0 0;
+    width:200px;
+    margin: 0 auto;
+    float:left;
+    line-height: 50px;
+    
+    
+  }
+  #menu li ul { 
+    position:absolute;
+    display: none;
+    
+  } 
+  #menu li ul li {
+    float: none;
+    display: inline;
+    width:100px;
+    line-height:35px;
+    
+    
+  }
+  #menu li ul li:hover {
+    background: #c392b;
+    
+  }
+  #menu li:hover ul {
+    display:block;
+    
+  }
+  #menu li ul li { 
+    display: block; 
+    background:#92d3d3;
+    
+
+  }
+
+  
+  

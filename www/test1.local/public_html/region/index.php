@@ -71,6 +71,7 @@ require "/home/dmitry/www/test1.local/public_html/db.php";
     <?php if ( isset($_SESSION['logged_user'])) : ?>Авторизован!<br>
     Привет, <?php echo $_SESSION['logged_user']->login; ?>!
     <hr>
+    <a href="/addregion/index.php"><br/>ЭБД регионов&ensp;</a>
     <a href="/new.php"><br/>Добавить новость&ensp;</a>
     <a href="/logout.php"><br>Выйти</a>
     <?php else :?>
@@ -88,17 +89,14 @@ require "/home/dmitry/www/test1.local/public_html/db.php";
 
 <main role="main">
 
-  <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">Добро пожаловать!</h1>
       <p>На этом сайте вы сможете отследить экономическую базу данных, как по всей стране, так и по отдельным регионам</p>
-     <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
     </div>
   </div>
 
   <div class="container">
-    <!-- Example row of columns -->
     <div class="row">
       <div class="col-md-4">
         <h2>Статистика по Региону</h2>
@@ -112,13 +110,7 @@ foreach ($new as $news){
   echo '<h2>'.$news->title.'<br>'.'</h2>';
   echo $news->text.'<br>';}}
     ?>
-       <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
       </div> 
-      <!--<div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-      </div> -->
        <div class="col-md-4 offset-md-4">
         <h2>Новости по стране</h2>
         <p>Росстат примет участие в Международной конференции «Опыт и будущие вызовы в измерении доходов и благосостояния в странах Восточной Европы и СНГ».
@@ -130,7 +122,7 @@ foreach ($new as $news){
 
     <hr>
 
-  </div> <!-- /container -->
+  </div> 
 
 </main>
 
