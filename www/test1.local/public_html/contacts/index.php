@@ -50,7 +50,6 @@ require "/home/dmitry/www/test1.local/public_html/db.php";
       <li class="nav-item">
         <a class="nav-link" href="http://www.yandex.ru">Yandex</a>
       
-      <!--  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
       </li>
 	    <li class="nav-item active">
         <a class="nav-link" href="http://test1.local/contacts">Контакты <span class="sr-only">(current)</span></a>
@@ -64,13 +63,10 @@ require "/home/dmitry/www/test1.local/public_html/db.php";
         </div>
       </li>
     </ul>
-    <!--<form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>-->
     <?php if ( isset($_SESSION['logged_user'])) : ?>Авторизован!<br>
     Привет, <?php echo $_SESSION['logged_user']->login; ?>!
     <hr>
+    <a href="/addregion/index.php"><br/>ЭБГ регионов&ensp;</a>
     <a href="/new.php"><br/>Добавить новость&ensp;</a>
     <a href="/logout.php"><br>Выйти</a>
     <?php else :?>

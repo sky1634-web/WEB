@@ -6,6 +6,7 @@ R::setup( 'mysql:host=localhost;dbname=test1.local',
 session_start();
 function news($new,$ht)
 {
+        if(!(isset($_SESSION)))
         if ($_SESSION['logged_user']->id == 1) {
         if ((mb_strlen($new, 'utf-8')<180) || (voidstr($new)) || (voidstr($ht))) {echo "Ошибка
                  т.к TEXT < 180 Symbol or text only with void symbols<br>";
@@ -29,9 +30,11 @@ function news($new,$ht)
         echo '<div style="color: green;">Новость успешно добавлена!<br/>
             Чтобы её посмотреть <a href="/region">новости</a> региона!</div><hr>';
         }
-}
+                                                }               
 else         echo '<div style="color: red;">Новость не добавлена!Вы не привилегированный пользователь!<br/>
 Вернуться на <a href="/region">главную</a></div><hr>';
+else         echo '<div style="color: red;">Новость не добавлена!Вы не авторизованный пользователь!<br/>
+Вернуться на <a href="/">главную</a></div><hr>'; 
 }
 function voidstr($str) {
 
