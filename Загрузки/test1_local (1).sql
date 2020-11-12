@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Ноя 09 2020 г., 17:42
+-- Время создания: Ноя 12 2020 г., 16:33
 -- Версия сервера: 10.4.14-MariaDB
 -- Версия PHP: 7.2.34
 
@@ -40,7 +40,30 @@ CREATE TABLE `news` (
 
 INSERT INTO `news` (`id`, `title`, `text`, `link`) VALUES
 (1, 'Новость номер 1', 'Владимир Путин исключил введение общенационального локдауна в стране. По его словам, власти будут принимать точечные решения для борьбы с пандемией COVID-19, чтобы максимально сох<a href=\"https://russian.rt.com/business/article/797567-rossiya-ekonomika-forum\">...</a>', 'https://russian.rt.com/business/article/797567-rossiya-ekonomika-forum'),
-(2, 'Новость номер 2', 'У правительства России нет плана по введению тотальных ограничений для бизнеса и граждан на фоне пандемии коронавируса. Об этом в четверг, 2 октября, заявил Владимир Путин затем<a href=\"https://rns.online/regions/V-Novom-Urengoe-zakroyut-chast-detskih-sadov--2020-11-05/\">...</a>', 'https://rns.online/regions/V-Novom-Urengoe-zakroyut-chast-detskih-sadov--2020-11-05/');
+(2, 'Новость номер 2', 'У правительства России нет плана по введению тотальных ограничений для бизнеса и граждан на фоне пандемии коронавируса. Об этом в четверг, 2 октября, заявил Владимир Путин затем<a href=\"https://rns.online/regions/V-Novom-Urengoe-zakroyut-chast-detskih-sadov--2020-11-05/\">...</a>', 'https://rns.online/regions/V-Novom-Urengoe-zakroyut-chast-detskih-sadov--2020-11-05/'),
+(3, 'Новость номер 3', 'Премьер-министр России Михаил Мишустин подписал постановление о продлении программы льготной ипотеки под 6,5% годовых до 1 июля 2021 года. По оценкам властей, инициатива позволит<a href=\"https://russian.rt.com/business/article/796781-prodlenie-lgotnaya-ipoteka\">...</a>', 'https://russian.rt.com/business/article/796781-prodlenie-lgotnaya-ipoteka');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `regions`
+--
+
+CREATE TABLE `regions` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `region` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kolvo` int(11) UNSIGNED DEFAULT NULL,
+  `responsible` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cap` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `money` int(11) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `regions`
+--
+
+INSERT INTO `regions` (`id`, `region`, `kolvo`, `responsible`, `cap`, `money`) VALUES
+(1, 'Волгоградская область', 2000000, 'Андрей Бочаров', 'Волгоград', 10000000);
 
 -- --------------------------------------------------------
 
@@ -77,6 +100,12 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `regions`
+--
+ALTER TABLE `regions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -90,7 +119,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `regions`
+--
+ALTER TABLE `regions`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
