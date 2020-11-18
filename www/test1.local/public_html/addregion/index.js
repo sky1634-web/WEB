@@ -17,8 +17,8 @@ function validate(){
     var region = document.getElementById("reg");
     var kolvo = document.getElementById("kol");
     var otvetstveny = document.getElementById("otv");
-    var center = document.getElementById("center");
-    var butget = document.getElementById("butget");
+    var cen = document.getElementById("center");
+    var but = document.getElementById("butget");
     var re = /[^А-Я^а-я^ ]/gu;
     if(!re.test(region.value))
     {
@@ -35,35 +35,35 @@ function validate(){
         text.style.color = "#ff0000";
         region.style.border= "2px solid red";
     }
-    if(!re.test(center.value))
+    if(!re.test(cen.value))
     {
         form.classList.add("valid");
         form.classList.remove("invalid");
         text3.innerHTML = "Поле заполнено верно";
         text3.style.color = "#00ff00";
-        center.style.border= "2px solid green";
+        cen.style.border= "2px solid green";
     }
     else{
         form.classList.remove("valid");
         form.classList.add("invalid");
         text3.innerHTML = "Название административного центра должно содержать только русские буквы без постронних символов!";
         text3.style.color = "#ff0000";
-        center.style.border= "2px solid red";
+        cen.style.border= "2px solid red";
     }
-    if(!isNaN(butget.value))
+    if(!isNaN(but.value))
     {
         form.classList.add("valid");
         form.classList.remove("invalid");
         text4.innerHTML = "Поле заполнено верно";
         text4.style.color = "#00ff00";
-        butget.style.border= "2px solid green";
+        but.style.border= "2px solid green";
     }
     else{
         form.classList.remove("valid");
         form.classList.add("invalid");
         text4.innerHTML = "Количество заполнено неверно.Следует ввести цифры";
         text4.style.color = "#ff0000";
-        butget.style.border= "2px solid red";
+        but.style.border= "2px solid red";
     }
     if(!isNaN(kolvo.value))
     {

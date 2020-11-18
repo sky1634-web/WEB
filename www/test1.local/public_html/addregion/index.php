@@ -3,6 +3,8 @@ require "/home/dmitry/www/test1.local/public_html/db.php";
 $data = $_POST;
 if( isset($data['do_edb'])  )
 {
+    if ($_SESSION) {
+    if ($_SESSION['logged_user']->id == 1)  {  
     $errors = array();
     if( trim($data['reg']) == ''  )
     {
@@ -46,10 +48,16 @@ if( isset($data['do_edb'])  )
     {
        echo '<div class="alert alert-danger" role="alert">'.array_shift($errors).'</div><hr>';
            
-    }
+    }    
+                            }
+                        }
+    else
+        echo '<div class="alert alert-danger" role="alert">У вас нет на это прав!</div>';
 
 }
 
+    
+    
 ?>
 <!DOCTYPE html>
 <head>
