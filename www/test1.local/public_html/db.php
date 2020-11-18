@@ -6,25 +6,27 @@ R::setup( 'mysql:host=localhost;dbname=test1.local',
 session_start();
 function news($new,$ht)
 {
-        if(!(isset($_SESSION)))
         if ($_SESSION['logged_user']->id == 1) {
-        if ((mb_strlen($new, 'utf-8')<180) || (voidstr($new)) || (voidstr($ht))) {echo "Ошибка
-                 т.к TEXT < 180 Symbol or text only with void symbols<br>";
+        if ((mb_strlen($new, 'utf-8')<180) || (voidstr($new)) || (voidstr($ht))) {
+                 echo "Ошибка т.к TEXT < 180 Symbol or text only with void symbols<br>";
                  echo '<div style="color: red;">Новость не создана<br/>
-            Можете перейти на <a href="/">главную</a> страницу!</div><hr>';
+                 Можете перейти на <a href="/">главную</a> страницу!</div><hr>';
         }
         else
         {
-        $p=179;
+        $p=180;
         $a = mb_strimwidth($new, 0 , $p);
         point($a);
         $a=trim($a);
+        $pieces = explode(" ", $a);
+        $cutted = array_slice($pieces, 0, count($pieces)-2);
+        $a = implode(" ",$cutted);
         echo "$a";
-        echo '<a href="'.$ht.'">...</a>';
+        echo '<a href="'.$ht.'">'." ".$pieces[count($pieces)-2]." ".$pieces[count($pieces)-1]."...".'</a>';
         $news = R::dispense('news');
         $id = R::count('news')+1;
         $news->title= "Новость номер "."$id";
-        $news->text=$a.'<a href="'.$ht.'">...</a>';
+        $news->text=$a." ".'<a href="'.$ht.'">'.$pieces[count($pieces)-2]." ".$pieces[count($pieces)-1]."...".'</a>';
         $news->link=$ht;
         R::store($news);
         echo '<div style="color: green;">Новость успешно добавлена!<br/>
@@ -32,9 +34,7 @@ function news($new,$ht)
         }
                                                 }               
 else         echo '<div style="color: red;">Новость не добавлена!Вы не привилегированный пользователь!<br/>
-Вернуться на <a href="/region">главную</a></div><hr>';
-else         echo '<div style="color: red;">Новость не добавлена!Вы не авторизованный пользователь!<br/>
-Вернуться на <a href="/">главную</a></div><hr>'; 
+Вернуться на <a href="/region">главную</a></div><hr>'; 
 }
 function voidstr($str) {
 
@@ -49,9 +49,9 @@ function voidstr($str) {
 }
 function point(&$str)
 {
- $len = strlen ($str);
- if ($str[$len-1]==".") { 
- while ($str[$len-1]=="." && $len!=0) {$str[$len-1]=" ";$len--;} 
-                        }
+    $len = strlen ($str);
+    if ($str[$len-1]==".") { 
+    while ($str[$len-1]=="." && $len!=0) {$str[$len-1]=" ";$len--;} 
+                           }
 
 }
