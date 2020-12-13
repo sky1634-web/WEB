@@ -55,6 +55,30 @@ if( isset($data['do_edb'])  )
         echo '<div class="alert alert-danger" role="alert">У вас нет на это прав!</div>';
 
 }
+if ( isset($data['do_delete'])  ) 
+{
+    $id = $data['id'];
+    $find = R::findOne('regions', 'id = ?',[$id]);
+    if ($find) {
+    $delete = R::load('regions', $find->id);
+    R::trash($delete);
+               }
+    else echo '<div class="alert alert-danger" role="alert">Регион с таким номером не найден!Пробуйте ещё</div>';
+}
+if (isset($data['do_edit']))
+{
+    $id1 = $data['id1'];
+    $regg = R::load('regions', $id1);
+    if ($regg) {
+    $regg->region=$data['reg1'];
+    $regg->kolvo=$data['kol1'];
+    $regg->responsible = $data['otv1'];
+    $regg->cap = $data['center1'];
+    $regg->money = $data['butget1'];
+    R::store($regg);
+                }
+    else echo '<div class="alert alert-danger" role="alert">Регион с таким номером не найден!Пробуйте ещё</div>'; 
+}
 
     
     
@@ -91,7 +115,6 @@ if( isset($data['do_edb'])  )
                                     <th scope="col">Количество проживающих</th>
                                     <th scope="col">Ответственный</th>
                                     <th scope="col">Бюджет</th>
-                                    <th class="text-right">Действие</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -110,10 +133,6 @@ if( isset($data['do_edb'])  )
                                     echo '<td>'.$regions->kolvo.'</td>';
                                     echo '<td>'.$regions->responsible.'</td>';
                                     echo '<td>'.$regions->money.'</td>';                                    
-                                    echo '                                    <td class = "text-right">
-                                    <button class="btn btn-primary badge-pill" style="width:100px;"> Изменить</button>
-                                    <button class="btn btn-danger badge-pill" style="width:100px;"> Удалить</button>
-                                </td>  ';
                                     echo '</tr>';
 
                                                                 }
@@ -122,9 +141,13 @@ if( isset($data['do_edb'])  )
  
                             </tbody>
                         </table> 
-                        <button onclick="showHide('block_id')" type="button" class="btn btn-info">Добавить регион</button>
+
+                        
+                        <button href="javascript:void(0)" onclick="showHide('block_id')" type="button" class="btn btn-info">Добавить регион</button>
+                        <button href="javascript:void(0)" onclick="showHide('block_id1')" type="button" class="btn btn-danger">Удалить регион</button>
+                        <button href="javascript:void(0)" onclick="showHide('block_id2')" type="button" class="btn btn-warning">Изменить данные региона</button>
                         <br><br>
-                        <form style="display:none"onsubmit="return validate();"id="block_id"  action=index.php method="POST">
+                        <form style="display:none" onsubmit="return validate();"id="block_id"  action=index.php method="POST">
                         <div class="form-row">
                             <div class="col">
                             <input type="text" name="reg" id="reg" class="form-control" value="<?php echo @$data['reg'];?>" placeholder="Название региона"required>
@@ -149,9 +172,88 @@ if( isset($data['do_edb'])  )
                         </div>
                         <br>
                         <button type="submit" name="do_edb" class="btn btn-primary">Добавить регион в базу</button>
+                       <br><br>
+                       
+                        </form>
+                        <form style="display:none"onsubmit="return validate();"id="block_id1"  action=index.php method="POST">
+                            <input type="text" name="id" id="id" class="form-control" value="<?php echo @$data['id'];?>" placeholder="Введите номер региона"required>
+                            <span id="text5"></span>
+                            <br>
+                            <button type="submit" name="do_delete" class="btn btn-danger">УДАЛИТЬ</button>
+                        </form>
 
+                        <br><br>
+                       
+                        </form>
+                        <form style="display:none"onsubmit="return validate();" id="block_id2"  action=index.php method="POST">
+                            <input type="text" name="id1" id="id1" class="form-control" value="<?php echo @$data['id1'];?>" placeholder="Введите номер региона"required>
+                            <span id="text6"></span>
+                            <br>
+                            <div class="col">
+                            <input type="text" name="reg1" id="reg1" class="form-control" value="<?php echo @$data['reg1'];?>" placeholder="Название региона"required>
+                            <span id="text7"></span>
+                            </div>
+                            <div class="col">
+                            <input type="text" name="center1" id="center1" class="form-control" value="<?php echo @$data['center1'];?>"placeholder="Админ.центр"required>
+                            <span id="text8"></span>
+                            </div>
+                            <div class="col">
+                            <input type="text" name="kol1" id="kol1" class="form-control" value="<?php echo @$data['kol1'];?>"placeholder="Количество проживающих"required>
+                            <span id="text9"></span>
+                            </div>
+                            <div class="col">
+                            <input type="text" name="otv1" id="otv1" class="form-control" value="<?php echo @$data['otv1'];?>"placeholder="Ответственный"required>
+                            <span id="text10"></span>
+                            </div>
+                            <div class="col">
+                            <input type="text" name="butget1" id="butget1" class="form-control" value="<?php echo @$data['butget1'];?>"placeholder="Бюджет"required>
+                            <span id="text11"></span>
+                            </div>
+                            <br><br>
+                            <button type="submit" name="do_edit" class="btn btn-warning">ИЗМЕНИТЬ</button>
 
-       
+                        </form>
+                        <table class="table table-hover table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">id</th>
+                                    <th scope="col">Название региона</th>
+                                    <th scope="col">Температура</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                   <?php
+                                    $col = R::findLast( 'temperature' );
+                                    if ($col)for ($i=0;$i<($col->id);$i++)
+                                    $idss[$i+1]=$i+1;
+                                    if ($col) {$temperatures = R::loadAll('temperature', $idss);}
+
+                                        $col = R::findLast( 'regions' );
+                                        if ($col)for ($i=0;$i<($col->id);$i++)
+                                        $ids[$i+1]=$i+1;
+                                        if ($col) {$region = R::loadAll('regions', $ids);}
+                                    foreach ($region as $regions){
+                                    foreach ($temperatures as $temperature){
+                                       if (strcasecmp($regions->region, $temperature->oblast) == 0) {
+                                    if($temperature->id==0) {continue;}
+                                    echo '<tr>';
+                                    echo '<th scope="row">'.$temperature->id.'</th>';
+                                    echo '<td>'.$temperature->oblast.'</td>';
+                                    echo '<td>'.$temperature->temp.'</td>';                               
+                                    echo '</tr>';
+
+                                                                           }
+
+                                                                            }
+                                                                }
+                                            
+                                    ?>   
+ 
+                            </tbody>
+                        </table> 
+
+                        
         </div>
       </div>
     </div>                      
